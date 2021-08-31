@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:divider="@drawable/spaceing"
+    android:showDividers="middle"
+    android:paddingBottom="20dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textItem"
+        android:paddingLeft="20dp"
+        android:textSize="20dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="3"
+        android:background="@drawable/text"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="2">
+    <Button
+        android:paddingRight="10dp"
+        android:id="@+id/editList_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:background="@drawable/btn"
+        />
+
+    <Button
+        android:background="@drawable/btn"
+        android:id="@+id/deleteList_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:text="Delete"
+        android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:background="@drawable/btn"
+            android:id="@+id/readList_items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:text="Read"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>

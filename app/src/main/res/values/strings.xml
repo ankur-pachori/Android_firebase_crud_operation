@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Crud_firebase</string>
+    <string name="btn_Create">Add User</string>
+    <string name="btn_Read">Read</string>
+    <string name="btn_Update">Update</string>
+    <string name="btn_Delete">Delete</string>
+</resources>
