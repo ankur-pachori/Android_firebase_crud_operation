@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:background="@drawable/text"
+        android:hint="User Name"
          />
     <EditText
         android:background="@drawable/text"
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="258dp" />
+        tools:layout_editor_absoluteY="258dp"
+        android:hint="Email"/>
     <EditText
         android:background="@drawable/text"
         android:id="@+id/editTxtNumber"
@@ -32,7 +34,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="258dp" />
+        tools:layout_editor_absoluteY="258dp"
+        android:hint="Number"/>
     <Button
         android:background="@drawable/btn"
         android:id="@+id/btnSubmit"

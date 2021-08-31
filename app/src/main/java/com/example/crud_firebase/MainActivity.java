@@ -2,6 +2,7 @@ package com.example.crud_firebase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
@@ -18,11 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements  View.OnClickListener {
+public class MainActivity extends AppCompatActivity{
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private static ArrayList<DBHelper> l = new ArrayList<>();
+    private static ArrayList<DBHelper> arrayList  = new ArrayList<>();
     private RecyclerView list;
     private Button btnCreate;
     public static Activity Fa;
@@ -31,17 +32,30 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        l.clear();
+        arrayList.clear();
         Fa =this;
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference =firebaseDatabase.getReference("Users");
         getUsers();
         btnCreate = findViewById(R.id.btn_CreateMain);
         list = findViewById(R.id.list);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(list.getContext(),
+        new LinearLayoutManager(this).getOrientation());
+        list.addItemDecoration(dividerItemDecoration);
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new ListAdapter(l,this ));
+        list.setAdapter(new ListAdapter(arrayList,this ));
         list.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener());
-        btnCreate.setOnClickListener(this);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,SecondActivity.class);
+                String s;
+                s="Create";
+                i.putExtra("Button",s);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
     public void getUsers(){
@@ -49,14 +63,13 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             String userName, email, number;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                l.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     userName =dataSnapshot.child("userName").getValue().toString();
                     email = dataSnapshot.child("email").getValue().toString();
                     number = dataSnapshot.child("number").getValue().toString();
-                    l.add(new DBHelper(userName,email,number));;
+                    arrayList.add(new DBHelper(userName,email,number));;
                      }
-                    list.setAdapter(new ListAdapter(l,MainActivity.this));
+                    list.setAdapter(new ListAdapter(arrayList,MainActivity.this));
             }
 
             @Override
@@ -70,20 +83,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         super.onBackPressed();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_CreateMain:
-                Intent i = new Intent(MainActivity.this,SecondActivity.class);
-                String s;
-                s="Create";
-                i.putExtra("Button",s);
-                startActivity(i);
-                finish();
-                break;
-        }
-    }
     public static void cleanList(){
-        l.clear();
+        arrayList.clear();
     }
 }
